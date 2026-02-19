@@ -1,139 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NutriGo — Web App de Alimentação Inteligente</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
+<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>NutriGo — Home</title><link rel="stylesheet" href="styles.css" /></head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">NG</div>
-        <div>
-          <h1>NutriGo</h1>
-          <p class="muted">Nutrição inteligente, simples e prática</p>
-        </div>
-      </div>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">Nutrição inteligente, simples e prática</p></div></div>
+    <nav class="nav-links">
+      <a class="btn active-link" href="index.html">Home</a><a class="btn" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn" href="profile.html">Perfil</a><a class="btn" href="premium.html">Premium</a>
+    </nav>
+    <div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div>
+  </header>
 
-      <div class="auth-area">
-        <button id="googleLoginBtn" class="btn">Entrar com Google</button>
-        <button id="logoutBtn" class="btn hidden">Terminar sessão</button>
-        <span id="userBadge" class="badge hidden"></span>
-      </div>
-    </header>
+  <section class="hero">
+    <div><p class="eyebrow">NUTRIGO FREEMIUM</p><h2>Uma app real de nutrição para competir com MyFitnessPal e Yummly</h2><p class="muted">Planos personalizados, receitas com fotos reais por tipo de prato, favoritos, perfil e upgrade premium.</p></div>
+    <div class="hero-kpis"><article><strong>100+</strong><span>Receitas</span></article><article><strong>4</strong><span>Tipos refeição</span></article><article><strong>Freemium</strong><span>Escalável</span></article></div>
+  </section>
 
-    <section class="hero">
-      <div>
-        <p class="eyebrow">NUTRIGO WEB APP</p>
-        <h2>O teu plano alimentar com 100 receitas e macros por porção</h2>
-        <p class="muted">Cria planos personalizados, filtra por refeições (incluindo snacks), guarda favoritos e acompanha o teu resumo diário.</p>
+  <div id="globalMessage" class="notice hidden"></div>
+
+  <main class="page">
+    <section class="section">
+      <h3>Resumo rápido</h3>
+      <div class="summary-grid">
+        <article class="card"><h4>Calorias</h4><p id="sumCalories">0 kcal</p></article>
+        <article class="card"><h4>Proteína</h4><p id="sumProtein">0 g</p></article>
+        <article class="card"><h4>Hidratos</h4><p id="sumCarbs">0 g</p></article>
+        <article class="card"><h4>Gordura</h4><p id="sumFat">0 g</p></article>
       </div>
-      <div class="hero-kpis">
-        <article><strong>100+</strong><span>Receitas</span></article>
-        <article><strong>4</strong><span>Tipos de refeição</span></article>
-        <article><strong>Perfil</strong><span>Free / Premium</span></article>
-      </div>
+      <article class="card"><h4>Favoritos de hoje</h4><ul id="selectedList" class="list"></ul></article>
     </section>
-
-    <div id="globalMessage" class="notice hidden"></div>
-
-    <div class="content-layout">
-      <aside class="sidebar">
-        <button class="btn nav-btn" data-tab="planner">Plano</button>
-        <button class="btn nav-btn" data-tab="recipes">Receitas</button>
-        <button class="btn nav-btn" data-tab="dashboard">Resumo</button>
-        <button class="btn nav-btn" data-tab="profile">Perfil</button>
-      </aside>
-
-      <main class="main-panel">
-        <section id="planner" class="tab active panel">
-          <h3>Criar plano personalizado</h3>
-          <p class="muted">Disponível apenas para utilizadores autenticados.</p>
-          <form id="plannerForm" class="card form-grid">
-            <label>Objetivo
-              <select id="goal" required>
-                <option value="manter">Manter peso</option>
-                <option value="perder">Perder gordura</option>
-                <option value="ganhar">Ganhar massa</option>
-              </select>
-            </label>
-            <label>Calorias diárias
-              <input type="number" id="calories" min="1200" step="50" value="2100" required />
-            </label>
-            <label>Refeições por dia
-              <input type="number" id="meals" min="3" max="6" value="4" required />
-            </label>
-            <button class="cta" type="submit">Gerar plano</button>
-          </form>
-          <div id="planResult" class="card hidden"></div>
-        </section>
-
-        <section id="recipes" class="tab panel">
-          <h3>Receitas saudáveis</h3>
-          <p class="muted">Podes explorar sem login, mas favoritar exige autenticação.</p>
-          <div class="card filter-row">
-            <input id="searchInput" type="search" placeholder="Pesquisar receita..." />
-            <select id="mealTypeFilter">
-              <option value="">Todas</option>
-              <option value="pequeno-almoco">Pequeno-almoço</option>
-              <option value="almoco">Almoço</option>
-              <option value="jantar">Jantar</option>
-              <option value="snack">Snack</option>
-            </select>
-            <button id="clearFilters" class="btn" type="button">Limpar</button>
-          </div>
-          <div id="recipesGrid" class="recipes"></div>
-        </section>
-
-        <section id="dashboard" class="tab panel">
-          <h3>Resumo nutricional diário</h3>
-          <div class="summary-grid">
-            <article class="card"><h4>Calorias</h4><p id="sumCalories">0 kcal</p></article>
-            <article class="card"><h4>Proteína</h4><p id="sumProtein">0 g</p></article>
-            <article class="card"><h4>Hidratos</h4><p id="sumCarbs">0 g</p></article>
-            <article class="card"><h4>Gordura</h4><p id="sumFat">0 g</p></article>
-          </div>
-          <article class="card">
-            <h4>Receitas favoritas de hoje</h4>
-            <ul id="selectedList"></ul>
-          </article>
-        </section>
-
-        <section id="profile" class="tab panel">
-          <h3>Perfil</h3>
-          <div class="profile-grid">
-            <article class="card">
-              <h4>Conta</h4>
-              <p id="profileName" class="muted">Sem sessão iniciada.</p>
-              <p id="profileEmail" class="muted"></p>
-            </article>
-            <article class="card">
-              <h4>Plano</h4>
-              <p id="planTier" class="muted">Free</p>
-              <button id="upgradeBtn" type="button" class="cta">Fazer upgrade para Premium</button>
-            </article>
-          </div>
-
-          <article class="card premium-block">
-            <h4>Funcionalidades Premium (roadmap)</h4>
-            <ul>
-              <li>Planos com microciclos e periodização semanal.</li>
-              <li>Lista de compras inteligente com estimativa de custo.</li>
-              <li>Sugestões com IA baseadas no teu progresso.</li>
-            </ul>
-            <p id="premiumStatus" class="muted">Faz upgrade para desbloquear estes módulos futuramente.</p>
-          </article>
-        </section>
-      </main>
-    </div>
-
-    <footer>
-      &copy; 2025 NutriGo. Todos os direitos reservados.
-    </footer>
-  </div>
-
-  <script src="app.js"></script>
+  </main>
+  <footer>&copy; 2025 NutriGo. Todos os direitos reservados.</footer>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
