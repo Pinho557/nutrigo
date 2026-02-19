@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriGo — Perfil</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">Perfil e progresso</p></div></div>
+      <nav class="nav-links">
+        <a class="btn" href="index.html">Home</a><a class="btn" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn active-link" href="profile.html">Perfil</a><a class="btn" href="premium.html">Premium</a>
+      </nav>
+      <div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div>
+    </header>
+
+    <div id="globalMessage" class="notice hidden"></div>
+
+    <main class="page">
+      <section class="section">
+        <h3>Perfil</h3>
+        <div class="profile-grid">
+          <article class="card">
+            <h4>Conta</h4>
+            <p id="profileName" class="muted">Sem sessão iniciada.</p>
+            <p id="profileEmail" class="muted"></p>
+            <p class="muted">Plano atual: <strong id="planTier">Free</strong></p>
+          </article>
+          <article class="card">
+            <h4>Último plano criado</h4>
+            <div id="profilePlan" class="muted">Ainda não tens plano guardado.</div>
+          </article>
+        </div>
+
+        <article class="card">
+          <h4>Histórico de planos</h4>
+          <ul id="planHistoryList" class="list"></ul>
+        </article>
+
+        <article class="card" style="margin-top:10px">
+          <h4>Receitas favoritas</h4>
+          <ul id="selectedList" class="list"></ul>
+        </article>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 NutriGo.</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
