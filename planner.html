@@ -1,4 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>NutriGo — Plano</title><link rel="stylesheet" href="styles.css" /></head>
-<body><div class="app-shell"><header class="topbar"><div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">Planeador personalizado</p></div></div><nav class="nav-links"><a class="btn" href="index.html">Home</a><a class="btn active-link" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn" href="profile.html">Perfil</a><a class="btn" href="premium.html">Premium</a></nav><div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div></header><div id="globalMessage" class="notice hidden"></div><main class="page"><section class="section"><h3>Criar plano personalizado</h3><p class="muted">Exige login para funcionar.</p><form id="plannerForm" class="card form-grid"><label>Objetivo<select id="goal" required><option value="manter">Manter peso</option><option value="perder">Perder gordura</option><option value="ganhar">Ganhar massa</option></select></label><label>Calorias diárias<input type="number" id="calories" min="1200" step="50" value="2100" required /></label><label>Refeições por dia<input type="number" id="meals" min="3" max="6" value="4" required /></label><button class="cta" type="submit">Gerar plano</button></form><div id="planResult" class="card hidden"></div></section></main><footer>&copy; 2025 NutriGo.</footer></div><script src="app.js"></script></body></html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriGo — Plano</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">Planeador nutricional</p></div></div>
+      <nav class="nav-links">
+        <a class="btn" href="index.html">Home</a><a class="btn active-link" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn" href="profile.html">Perfil</a><a class="btn" href="premium.html">Premium</a>
+      </nav>
+      <div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div>
+    </header>
+
+    <div id="globalMessage" class="notice hidden"></div>
+
+    <main class="page">
+      <section class="section">
+        <h3>Criar plano personalizado</h3>
+        <p class="muted">O plano é guardado automaticamente no teu perfil.</p>
+        <form id="plannerForm" class="card form-grid">
+          <label>Objetivo
+            <select id="goal" required>
+              <option value="manter">Manter peso</option>
+              <option value="perder">Perder gordura</option>
+              <option value="ganhar">Ganhar massa</option>
+            </select>
+          </label>
+          <label>Calorias diárias
+            <input type="number" id="calories" min="1200" step="50" value="2100" required />
+          </label>
+          <label>Refeições por dia
+            <input type="number" id="meals" min="3" max="6" value="4" required />
+          </label>
+          <button class="cta" type="submit">Gerar plano</button>
+        </form>
+        <div id="planResult" class="card hidden" style="margin-top:10px"></div>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 NutriGo.</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

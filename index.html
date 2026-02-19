@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>NutriGo — Home</title><link rel="stylesheet" href="styles.css" /></head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriGo — Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-<div class="app-shell">
-  <header class="topbar">
-    <div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">Nutrição inteligente, simples e prática</p></div></div>
-    <nav class="nav-links">
-      <a class="btn active-link" href="index.html">Home</a><a class="btn" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn" href="profile.html">Perfil</a><a class="btn" href="premium.html">Premium</a>
-    </nav>
-    <div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div>
-  </header>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">App de planos nutricionais</p></div></div>
+      <nav class="nav-links">
+        <a class="btn active-link" href="index.html">Home</a><a class="btn" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn" href="profile.html">Perfil</a><a class="btn" href="premium.html">Premium</a>
+      </nav>
+      <div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div>
+    </header>
 
-  <section class="hero">
-    <div><p class="eyebrow">NUTRIGO FREEMIUM</p><h2>Uma app real de nutrição para competir com MyFitnessPal e Yummly</h2><p class="muted">Planos personalizados, receitas com fotos reais por tipo de prato, favoritos, perfil e upgrade premium.</p></div>
-    <div class="hero-kpis"><article><strong>100+</strong><span>Receitas</span></article><article><strong>4</strong><span>Tipos refeição</span></article><article><strong>Freemium</strong><span>Escalável</span></article></div>
-  </section>
-
-  <div id="globalMessage" class="notice hidden"></div>
-
-  <main class="page">
-    <section class="section">
-      <h3>Resumo rápido</h3>
-      <div class="summary-grid">
-        <article class="card"><h4>Calorias</h4><p id="sumCalories">0 kcal</p></article>
-        <article class="card"><h4>Proteína</h4><p id="sumProtein">0 g</p></article>
-        <article class="card"><h4>Hidratos</h4><p id="sumCarbs">0 g</p></article>
-        <article class="card"><h4>Gordura</h4><p id="sumFat">0 g</p></article>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">NUTRIGO</p>
+        <h2>Planos nutricionais personalizados com experiência real de produto</h2>
+        <p class="muted">Gera plano, guarda no perfil, acompanha macros e usa biblioteca de receitas por categoria incluindo snacks.</p>
       </div>
-      <article class="card"><h4>Favoritos de hoje</h4><ul id="selectedList" class="list"></ul></article>
+      <div class="hero-kpis">
+        <article><strong>120</strong><span>Receitas</span></article>
+        <article><strong>Perfil</strong><span>Histórico de planos</span></article>
+        <article><strong>Freemium</strong><span>Pronto para escalar</span></article>
+      </div>
     </section>
-  </main>
-  <footer>&copy; 2025 NutriGo. Todos os direitos reservados.</footer>
-</div>
-<script src="app.js"></script>
+
+    <div id="globalMessage" class="notice hidden"></div>
+
+    <main class="page">
+      <section class="section">
+        <h3>Resumo rápido</h3>
+        <div class="summary-grid">
+          <article class="card"><h4>Calorias</h4><p id="sumCalories">0 kcal</p></article>
+          <article class="card"><h4>Proteína</h4><p id="sumProtein">0 g</p></article>
+          <article class="card"><h4>Hidratos</h4><p id="sumCarbs">0 g</p></article>
+          <article class="card"><h4>Gordura</h4><p id="sumFat">0 g</p></article>
+        </div>
+        <article class="card"><h4>Favoritos de hoje</h4><ul id="selectedList" class="list"></ul></article>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 NutriGo.</footer>
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>

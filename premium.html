@@ -1,4 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>NutriGo — Premium</title><link rel="stylesheet" href="styles.css" /></head>
-<body><div class="app-shell"><header class="topbar"><div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">Modelo freemium</p></div></div><nav class="nav-links"><a class="btn" href="index.html">Home</a><a class="btn" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn" href="profile.html">Perfil</a><a class="btn active-link" href="premium.html">Premium</a></nav><div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div></header><div id="globalMessage" class="notice hidden"></div><main class="page"><section class="section"><h3>NutriGo Freemium</h3><p class="muted">Posicionamento de produto real para venda.</p><div class="pricing"><article class="card price-card"><h4>Free</h4><p class="price">0€ / mês</p><ul class="list"><li>Plano básico</li><li>Explorar receitas</li><li>Até 20 favoritos</li></ul></article><article class="card price-card"><h4>Premium</h4><p class="price">7.99€ / mês</p><ul class="list"><li>Planos avançados por objetivo</li><li>Histórico completo e analytics</li><li>Lista de compras inteligente</li><li>Sugestões IA personalizadas</li></ul><button id="upgradeBtn" class="cta" type="button">Ativar Premium</button></article></div><p id="premiumStatus" class="muted" style="margin-top:10px">Faz upgrade para desbloquear estes módulos futuramente.</p></section></main><footer>&copy; 2025 NutriGo.</footer></div><script src="app.js"></script></body></html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriGo — Premium</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><div class="logo">NG</div><div><h1>NutriGo</h1><p class="muted">Modelo freemium</p></div></div>
+      <nav class="nav-links">
+        <a class="btn" href="index.html">Home</a><a class="btn" href="planner.html">Plano</a><a class="btn" href="recipes.html">Receitas</a><a class="btn" href="profile.html">Perfil</a><a class="btn active-link" href="premium.html">Premium</a>
+      </nav>
+      <div class="auth-area"><button id="googleLoginBtn" class="btn">Entrar com Google</button><button id="logoutBtn" class="btn hidden">Terminar sessão</button><span id="userBadge" class="badge hidden"></span></div>
+    </header>
+
+    <div id="globalMessage" class="notice hidden"></div>
+
+    <main class="page">
+      <section class="section">
+        <h3>NutriGo Freemium</h3>
+        <p class="muted">Estrutura comercial pronta para lançar MVP.</p>
+        <div class="pricing">
+          <article class="card price-card">
+            <h4>Free</h4>
+            <p class="price">0€ / mês</p>
+            <ul class="list">
+              <li>Gerar planos e consultar histórico</li>
+              <li>Explorar 120 receitas</li>
+              <li>Favoritar receitas</li>
+            </ul>
+          </article>
+          <article class="card price-card">
+            <h4>Premium</h4>
+            <p class="price">7.99€ / mês</p>
+            <ul class="list">
+              <li>Analytics nutricional avançado</li>
+              <li>Planos por objetivo e fase</li>
+              <li>Lista de compras inteligente</li>
+              <li>Sugestões IA personalizadas</li>
+            </ul>
+            <button id="upgradeBtn" class="cta" type="button">Ativar Premium</button>
+          </article>
+        </div>
+        <p id="premiumStatus" class="muted" style="margin-top:10px">Faz upgrade para desbloquear estes módulos.</p>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 NutriGo.</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

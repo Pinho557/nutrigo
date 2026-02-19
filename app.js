@@ -1,102 +1,119 @@
-const TOTAL_RECIPES = 100;
+const MEAL_TYPES = ['pequeno-almoco', 'almoco', 'jantar', 'snack'];
 
-const recipeCatalog = [
-  { name: 'Bowl de Frango e Quinoa', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Aveia Overnight com Frutos Vermelhos', image: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Salmão com Legumes Assados', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Omelete Proteica', image: 'https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Wrap de Atum e Abacate', image: 'https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Iogurte Grego com Granola', image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Tofu Salteado com Arroz Integral', image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Panquecas de Banana e Aveia', image: 'https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Salada Mediterrânica com Grão', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Peru no Forno com Batata Doce', image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=80' }
-];
+const IMAGE_POOLS = {
+  'pequeno-almoco': [
+    'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80'
+  ],
+  almoco: [
+    'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=1200&q=80'
+  ],
+  jantar: [
+    'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=1200&q=80'
+  ],
+  snack: [
+    'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1200&q=80'
+  ]
+};
 
-const mealTypes = ['pequeno-almoco', 'almoco', 'jantar', 'snack'];
+const BASES = ['Frango', 'Peru', 'Salmão', 'Atum', 'Tofu', 'Ovos', 'Grão', 'Quinoa', 'Aveia', 'Iogurte'];
+const STYLE = ['Mediterrânico', 'Proteico', 'Fit', 'Rápido', 'Energético', 'Low Carb', 'Balanceado', 'Veggie'];
+const SIDES = ['com Legumes', 'com Arroz Integral', 'com Batata Doce', 'com Frutos Vermelhos', 'com Abacate', 'com Espinafres', 'com Sementes', 'com Molho de Iogurte'];
+
+const TOTAL_RECIPES = 120;
+
 const recipes = Array.from({ length: TOTAL_RECIPES }, (_, idx) => {
   const id = idx + 1;
-  const baseRecipe = recipeCatalog[idx % recipeCatalog.length];
-  const type = mealTypes[idx % mealTypes.length];
-  const protein = 12 + (idx % 7) * 4;
-  const carbs = 14 + (idx % 8) * 6;
-  const fat = 6 + (idx % 6) * 3;
+  const type = MEAL_TYPES[idx % MEAL_TYPES.length];
+  const base = BASES[idx % BASES.length];
+  const style = STYLE[(idx * 3) % STYLE.length];
+  const side = SIDES[(idx * 5) % SIDES.length];
+
+  const protein = 14 + (idx % 9) * 3;
+  const carbs = 18 + (idx % 10) * 5;
+  const fat = 7 + (idx % 7) * 2;
+
   return {
     id,
-    name: `${baseRecipe.name} #${id}`,
+    name: `${base} ${style} ${side}`,
     type,
-    calories: 220 + (idx % 9) * 35 + protein + fat,
+    calories: Math.round(protein * 4 + carbs * 4 + fat * 9),
     protein,
     carbs,
     fat,
-    image: baseRecipe.image
+    image: IMAGE_POOLS[type][idx % IMAGE_POOLS[type].length]
   };
 });
 
-const selectedRecipes = new Set();
-const state = { user: null, isPremium: false, lastPlan: null };
+const state = {
+  user: null,
+  isPremium: false,
+  favorites: new Set(),
+  planHistory: []
+};
 
 const $ = (id) => document.getElementById(id);
-const exists = (id) => Boolean($(id));
+const hasEl = (id) => Boolean($(id));
 
 function showMessage(text) {
-  if (!exists('globalMessage')) return;
+  if (!hasEl('globalMessage')) return;
   const node = $('globalMessage');
   node.textContent = text;
   node.classList.remove('hidden');
-  setTimeout(() => node.classList.add('hidden'), 2400);
+  setTimeout(() => node.classList.add('hidden'), 2600);
 }
-
-function isAuthenticated() { return !!state.user; }
 
 function mealTypeLabel(type) {
   return ({ 'pequeno-almoco': 'Pequeno-almoço', almoco: 'Almoço', jantar: 'Jantar', snack: 'Snack' }[type] || type);
 }
 
 function saveState() {
-  localStorage.setItem('nutrigo_auth', JSON.stringify({ user: state.user, isPremium: state.isPremium, lastPlan: state.lastPlan }));
-  localStorage.setItem('nutrigo_selected', JSON.stringify([...selectedRecipes]));
+  localStorage.setItem('nutrigo_state', JSON.stringify({
+    user: state.user,
+    isPremium: state.isPremium,
+    favorites: [...state.favorites],
+    planHistory: state.planHistory
+  }));
 }
 
 function loadState() {
   try {
-    const saved = JSON.parse(localStorage.getItem('nutrigo_auth') || '{}');
-    state.user = saved.user || null;
-    state.isPremium = !!saved.isPremium;
-    state.lastPlan = saved.lastPlan || null;
-    JSON.parse(localStorage.getItem('nutrigo_selected') || '[]').forEach((id) => selectedRecipes.add(id));
+    const raw = JSON.parse(localStorage.getItem('nutrigo_state') || '{}');
+    state.user = raw.user || null;
+    state.isPremium = !!raw.isPremium;
+    state.favorites = new Set(raw.favorites || []);
+    state.planHistory = Array.isArray(raw.planHistory) ? raw.planHistory : [];
   } catch {
-    localStorage.removeItem('nutrigo_auth');
-    localStorage.removeItem('nutrigo_selected');
+    localStorage.removeItem('nutrigo_state');
   }
 }
 
-function renderAuthUI() {
-  if (exists('googleLoginBtn')) $('googleLoginBtn').classList.toggle('hidden', isAuthenticated());
-  if (exists('logoutBtn')) $('logoutBtn').classList.toggle('hidden', !isAuthenticated());
-  if (exists('userBadge')) {
-    $('userBadge').classList.toggle('hidden', !isAuthenticated());
-    $('userBadge').textContent = isAuthenticated() ? state.user.name : '';
+function renderAuth() {
+  if (hasEl('googleLoginBtn')) $('googleLoginBtn').classList.toggle('hidden', !!state.user);
+  if (hasEl('logoutBtn')) $('logoutBtn').classList.toggle('hidden', !state.user);
+  if (hasEl('userBadge')) {
+    $('userBadge').classList.toggle('hidden', !state.user);
+    $('userBadge').textContent = state.user ? state.user.name : '';
   }
-
-  if (exists('profileName')) $('profileName').textContent = isAuthenticated() ? state.user.name : 'Sem sessão iniciada.';
-  if (exists('profileEmail')) $('profileEmail').textContent = isAuthenticated() ? state.user.email : '';
-  if (exists('planTier')) $('planTier').textContent = state.isPremium ? 'Premium' : 'Free';
-  if (exists('premiumStatus')) {
+  if (hasEl('profileName')) $('profileName').textContent = state.user ? state.user.name : 'Sem sessão iniciada.';
+  if (hasEl('profileEmail')) $('profileEmail').textContent = state.user ? state.user.email : '';
+  if (hasEl('planTier')) $('planTier').textContent = state.isPremium ? 'Premium' : 'Free';
+  if (hasEl('premiumStatus')) {
     $('premiumStatus').textContent = state.isPremium
-      ? 'Tens acesso premium ativo. Recomendações avançadas e analytics desbloqueados.'
-      : 'Faz upgrade para desbloquear estes módulos futuramente.';
-  }
-
-  if (exists('profilePlan')) {
-    $('profilePlan').innerHTML = state.lastPlan
-      ? `Objetivo: <strong>${state.lastPlan.goal}</strong><br>Kcal: <strong>${state.lastPlan.calories}</strong><br>Refeições: <strong>${state.lastPlan.meals}</strong>`
-      : 'Ainda não tens plano guardado.';
+      ? 'Premium ativo: módulos avançados desbloqueados.'
+      : 'Faz upgrade para desbloquear estes módulos.';
   }
 }
 
-function renderSummary() {
-  const selected = recipes.filter((r) => selectedRecipes.has(r.id));
+function renderSummaryCards() {
+  const selected = recipes.filter((r) => state.favorites.has(r.id));
   const totals = selected.reduce((acc, r) => ({
     calories: acc.calories + r.calories,
     protein: acc.protein + r.protein,
@@ -104,33 +121,30 @@ function renderSummary() {
     fat: acc.fat + r.fat
   }), { calories: 0, protein: 0, carbs: 0, fat: 0 });
 
-  if (exists('sumCalories')) $('sumCalories').textContent = `${totals.calories} kcal`;
-  if (exists('sumProtein')) $('sumProtein').textContent = `${totals.protein} g`;
-  if (exists('sumCarbs')) $('sumCarbs').textContent = `${totals.carbs} g`;
-  if (exists('sumFat')) $('sumFat').textContent = `${totals.fat} g`;
+  if (hasEl('sumCalories')) $('sumCalories').textContent = `${totals.calories} kcal`;
+  if (hasEl('sumProtein')) $('sumProtein').textContent = `${totals.protein} g`;
+  if (hasEl('sumCarbs')) $('sumCarbs').textContent = `${totals.carbs} g`;
+  if (hasEl('sumFat')) $('sumFat').textContent = `${totals.fat} g`;
 
-  if (exists('selectedList')) {
-    $('selectedList').innerHTML = selected.map((r) => `<li>${r.name}</li>`).join('') || '<li>Nenhuma receita favorita.</li>';
+  if (hasEl('selectedList')) {
+    $('selectedList').innerHTML = selected.map((r) => `<li>${r.name}</li>`).join('') || '<li>Sem receitas favoritas ainda.</li>';
   }
 }
 
-window.toggleRecipe = function toggleRecipe(id) {
-  if (!isAuthenticated()) return showMessage('Faz login para favoritar receitas.');
-  if (selectedRecipes.has(id)) selectedRecipes.delete(id); else selectedRecipes.add(id);
-  saveState();
-  renderRecipes();
-  renderSummary();
-};
-
 function renderRecipes() {
-  if (!exists('recipesGrid')) return;
-  const search = exists('searchInput') ? $('searchInput').value.toLowerCase().trim() : '';
-  const type = exists('mealTypeFilter') ? $('mealTypeFilter').value : '';
-  const filtered = recipes.filter((r) => r.name.toLowerCase().includes(search) && (!type || r.type === type));
+  if (!hasEl('recipesGrid')) return;
+  const search = hasEl('searchInput') ? $('searchInput').value.toLowerCase().trim() : '';
+  const type = hasEl('mealTypeFilter') ? $('mealTypeFilter').value : '';
+
+  const filtered = recipes.filter((r) => {
+    const byName = r.name.toLowerCase().includes(search);
+    const byType = !type || r.type === type;
+    return byName && byType;
+  });
 
   $('recipesGrid').innerHTML = filtered.map((r) => `
     <article class="card recipe-card">
-      <img src="${r.image}" alt="${r.name}" loading="lazy" class="recipe-image" />
+      <img src="${r.image}" alt="${r.name}" class="recipe-image" loading="lazy" />
       <h4>${r.name}</h4>
       <p class="muted">${mealTypeLabel(r.type)}</p>
       <div class="recipe-meta">
@@ -139,42 +153,90 @@ function renderRecipes() {
         <span><strong>${r.carbs}g</strong> hidratos</span>
         <span><strong>${r.fat}g</strong> gordura</span>
       </div>
-      <button class="cta" type="button" onclick="toggleRecipe(${r.id})">${selectedRecipes.has(r.id) ? 'Remover favorito' : 'Favoritar receita'}</button>
+      <button class="cta" type="button" onclick="toggleFavorite(${r.id})">${state.favorites.has(r.id) ? 'Remover favorito' : 'Favoritar'}</button>
     </article>
-  `).join('') || '<article class="card">Sem resultados para os filtros atuais.</article>';
+  `).join('');
+
+  if (!filtered.length) {
+    $('recipesGrid').innerHTML = '<article class="card">Sem resultados para os filtros atuais.</article>';
+  }
+}
+
+window.toggleFavorite = function toggleFavorite(id) {
+  if (!state.user) return showMessage('Faz login para guardar favoritos.');
+  if (state.favorites.has(id)) state.favorites.delete(id); else state.favorites.add(id);
+  saveState();
+  renderRecipes();
+  renderSummaryCards();
+};
+
+function renderProfilePlan() {
+  if (!hasEl('profilePlan')) return;
+  if (!state.planHistory.length) {
+    $('profilePlan').innerHTML = 'Ainda não tens plano guardado.';
+    return;
+  }
+
+  const latest = state.planHistory[0];
+  $('profilePlan').innerHTML = `
+    Objetivo: <strong>${latest.goal}</strong><br>
+    Calorias: <strong>${latest.calories}</strong><br>
+    Refeições: <strong>${latest.meals}</strong><br>
+    Proteína/Hidratos/Gordura: <strong>${latest.protein}g / ${latest.carbs}g / ${latest.fat}g</strong>
+  `;
+
+  if (hasEl('planHistoryList')) {
+    $('planHistoryList').innerHTML = state.planHistory.slice(0, 5).map((p, i) =>
+      `<li>#${i + 1} — ${p.goal}, ${p.calories} kcal, ${p.meals} refeições</li>`).join('');
+  }
 }
 
 function bindEvents() {
-  if (exists('googleLoginBtn')) {
+  if (hasEl('googleLoginBtn')) {
     $('googleLoginBtn').addEventListener('click', () => {
-      state.user = { name: 'Utilizador Google', email: 'utilizador.google@nutrigo.app' };
-      saveState(); renderAuthUI(); showMessage('Sessão iniciada com Google (demo).');
+      state.user = { name: 'Utilizador NutriGo', email: 'utilizador@nutrigo.app' };
+      saveState();
+      renderAuth();
+      showMessage('Sessão iniciada com Google (demo).');
     });
   }
 
-  if (exists('logoutBtn')) {
+  if (hasEl('logoutBtn')) {
     $('logoutBtn').addEventListener('click', () => {
-      state.user = null; state.isPremium = false; selectedRecipes.clear(); state.lastPlan = null;
-      saveState(); renderAuthUI(); renderRecipes(); renderSummary(); showMessage('Sessão terminada.');
+      state.user = null;
+      state.isPremium = false;
+      state.favorites.clear();
+      saveState();
+      renderAuth();
+      renderRecipes();
+      renderSummaryCards();
+      showMessage('Sessão terminada.');
     });
   }
 
-  if (exists('upgradeBtn')) {
+  if (hasEl('upgradeBtn')) {
     $('upgradeBtn').addEventListener('click', () => {
-      if (!isAuthenticated()) return showMessage('Faz login para ativares o premium.');
-      state.isPremium = true; saveState(); renderAuthUI(); showMessage('Premium ativado em modo demo.');
+      if (!state.user) return showMessage('Faz login para ativar premium.');
+      state.isPremium = true;
+      saveState();
+      renderAuth();
+      showMessage('Premium ativado em modo demo.');
     });
   }
 
-  if (exists('searchInput')) $('searchInput').addEventListener('input', renderRecipes);
-  if (exists('mealTypeFilter')) $('mealTypeFilter').addEventListener('change', renderRecipes);
-  if (exists('clearFilters')) $('clearFilters').addEventListener('click', () => { $('searchInput').value = ''; $('mealTypeFilter').value = ''; renderRecipes(); });
+  if (hasEl('searchInput')) $('searchInput').addEventListener('input', renderRecipes);
+  if (hasEl('mealTypeFilter')) $('mealTypeFilter').addEventListener('change', renderRecipes);
+  if (hasEl('clearFilters')) {
+    $('clearFilters').addEventListener('click', () => {
+      $('searchInput').value = '';
+      $('mealTypeFilter').value = '';
+      renderRecipes();
+    });
+  }
 
-  if (exists('plannerForm')) {
-    $('plannerForm').addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (!isAuthenticated()) return showMessage('Inicia sessão para criares planos personalizados.');
-
+  if (hasEl('plannerForm')) {
+    $('plannerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
       const goal = $('goal').value;
       const calories = Number($('calories').value);
       const meals = Number($('meals').value);
@@ -182,20 +244,24 @@ function bindEvents() {
       const carbs = Math.round((calories * 0.4) / 4);
       const fat = Math.round((calories * 0.3) / 9);
 
-      state.lastPlan = { goal, calories, meals, protein, carbs, fat };
+      const plan = { goal, calories, meals, protein, carbs, fat, createdAt: new Date().toISOString() };
+      state.planHistory.unshift(plan);
+      state.planHistory = state.planHistory.slice(0, 20);
       saveState();
 
       $('planResult').classList.remove('hidden');
       $('planResult').innerHTML = `
         <h4>Plano gerado (${goal})</h4>
-        <p class="muted">Meta diária: ${calories} kcal em ${meals} refeições.</p>
+        <p class="muted">Plano guardado no teu perfil automaticamente.</p>
         <div class="summary-grid" style="margin-top:10px">
           <article class="card"><h4>Proteína</h4><p>${protein} g</p></article>
           <article class="card"><h4>Hidratos</h4><p>${carbs} g</p></article>
           <article class="card"><h4>Gordura</h4><p>${fat} g</p></article>
           <article class="card"><h4>Por refeição</h4><p>${Math.round(calories / meals)} kcal</p></article>
-        </div>`;
-      showMessage('Plano guardado no teu perfil.');
+        </div>
+      `;
+      renderProfilePlan();
+      showMessage('Plano guardado com sucesso.');
     });
   }
 }
@@ -203,7 +269,8 @@ function bindEvents() {
 (function init() {
   loadState();
   bindEvents();
-  renderAuthUI();
+  renderAuth();
   renderRecipes();
-  renderSummary();
+  renderSummaryCards();
+  renderProfilePlan();
 })();
